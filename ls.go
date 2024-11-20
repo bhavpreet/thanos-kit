@@ -1,4 +1,4 @@
-package main
+package thanoskit
 
 import (
 	"context"
@@ -10,7 +10,7 @@ import (
 	"strings"
 )
 
-func ls(bkt objstore.Bucket, recursive *bool, maxTime *model.TimeOrDurationValue) error {
+func Ls(bkt objstore.Bucket, recursive *bool, maxTime *model.TimeOrDurationValue) error {
 	blocks, err := getBlocks(context.Background(), bkt, *recursive, maxTime)
 	if err == nil {
 		for _, b := range blocks {

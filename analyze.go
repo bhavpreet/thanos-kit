@@ -1,4 +1,4 @@
-package main
+package thanoskit
 
 import (
 	"context"
@@ -19,7 +19,7 @@ import (
 	"time"
 )
 
-func analyze(bkt objstore.Bucket, id, dir *string, analyzeLimit *int, analyzeMatchers *string, logger log.Logger) error {
+func Analyze(bkt objstore.Bucket, id, dir *string, analyzeLimit *int, analyzeMatchers *string, logger log.Logger) error {
 	ctx := context.Background()
 	if err := downloadBlock(ctx, *dir, *id, bkt, logger); err != nil {
 		return err

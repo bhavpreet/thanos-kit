@@ -1,4 +1,4 @@
-module github.com/sepich/thanos-kit
+module github.com/bhavpreet/thanos-kit
 
 go 1.21
 

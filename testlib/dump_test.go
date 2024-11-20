@@ -1,4 +1,4 @@
-package thanoskit
+package thanoskittest
 
 import (
 	"fmt"
@@ -11,11 +11,12 @@ import (
 	"testing"
 	"time"
 
+	tk "github.com/bhavpreet/thanos-kit"
 	"github.com/go-kit/log"
 	"github.com/thanos-io/thanos/pkg/block/metadata"
 )
 
-func Test_e2e(t *testing.T) {
+func Test_dump_e2e(t *testing.T) {
 	tmpDir := "./tmp"
 	bktDir := tmpDir + "/bucket"
 	if err := os.MkdirAll(bktDir, 0750); err != nil {
@@ -47,7 +48,7 @@ func Test_e2e(t *testing.T) {
 		`prometheus="prometheus-a"`,
 		"datacenter=us",
 	}
-	if err := ImportMetrics(bkt, &inputFile, &blockSize, &cacheDir, &importLabels, true, logger); err != nil {
+	if err := tk.ImportMetrics(bkt, &inputFile, &blockSize, &cacheDir, &importLabels, true, logger); err != nil {
 		t.Fatalf("Import of %s failed: %v", inputFile, err)
 	}
 	os.RemoveAll(cacheDir)
@@ -74,7 +75,7 @@ func Test_e2e(t *testing.T) {
 	minT := int64(0)
 	maxT := int64(math.MaxInt64)
 	match := "{__name__=~'(?s:.*)'}"
-	if err := Dump(bkt, f, &ids, &cacheDir, &minT, &maxT, &match, logger); err != nil {
+	if err := tk.Dump(bkt, f, &ids, &cacheDir, &minT, &maxT, &match, logger); err != nil {
 		t.Fatalf("Export of %s failed: %v", ids, err)
 	}
 	f.Close()

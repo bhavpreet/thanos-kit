@@ -3,3 +3,5 @@
 /thanos-kit
 /data/
 /S3/
+.aider*
+.env

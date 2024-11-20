@@ -1,4 +1,4 @@
-package main
+package thanoskit
 
 import (
 	"context"
@@ -19,7 +19,7 @@ import (
 	"time"
 )
 
-func dump(bkt objstore.Bucket, out io.Writer, ids *[]string, dir *string, mint, maxt *int64, match *string, logger log.Logger) error {
+func Dump(bkt objstore.Bucket, out io.Writer, ids *[]string, dir *string, mint, maxt *int64, match *string, logger log.Logger) error {
 	ctx := context.Background()
 	for _, id := range *ids {
 		if _, err := ulid.Parse(id); err != nil {

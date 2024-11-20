@@ -1,4 +1,4 @@
-package main
+package thanoskit
 
 import (
 	"fmt"
@@ -15,7 +15,7 @@ import (
 	"strconv"
 )
 
-func main() {
+func my_main() {
 	app := kingpin.New(filepath.Base(os.Args[0]), "Tooling for Thanos blocks in object storage").Version(version.Print("thanos-split"))
 	app.HelpFlag.Short('h')
 	logLevel := app.Flag("log.level", "Log filtering level (info, debug)").Default("info").Enum("error", "warn", "info", "debug")
@@ -91,17 +91,17 @@ func main() {
 
 	switch cmd {
 	case lsCmd.FullCommand():
-		exitCode(ls(bkt, lsRecursive, lsMaxTime))
+		exitCode(Ls(bkt, lsRecursive, lsMaxTime))
 	case inspectCmd.FullCommand():
-		exitCode(inspect(bkt, inspectRecursive, inspectSelector, inspectSortBy, inspectMaxTime, logger))
+		exitCode(Inspect(bkt, inspectRecursive, inspectSelector, inspectSortBy, inspectMaxTime, logger))
 	case analyzeCmd.FullCommand():
-		exitCode(analyze(bkt, analyzeULID, analyzeDir, analyzeLimit, analyzeMatchers, logger))
+		exitCode(Analyze(bkt, analyzeULID, analyzeDir, analyzeLimit, analyzeMatchers, logger))
 	case dumpCmd.FullCommand():
-		exitCode(dump(bkt, os.Stdout, dumpULIDs, dumpDir, dumpMinTime, dumpMaxTime, dumpMatch, logger))
+		exitCode(Dump(bkt, os.Stdout, dumpULIDs, dumpDir, dumpMinTime, dumpMaxTime, dumpMatch, logger))
 	case importCmd.FullCommand():
-		exitCode(importMetrics(bkt, importFromFile, importBlockSize, importDir, importLabels, *importUpload, logger))
+		exitCode(ImportMetrics(bkt, importFromFile, importBlockSize, importDir, importLabels, *importUpload, logger))
 	case unwrapCmd.FullCommand():
-		exitCode(unwrap(bkt, *unwrapRelabel, *unwrapMetaRelabel, *unwrapRecursive, unwrapDir, unwrapWait, *unwrapDry, unwrapDst, unwrapMaxTime, unwrapSrc, logger))
+		exitCode(Unwrap(bkt, *unwrapRelabel, *unwrapMetaRelabel, *unwrapRecursive, unwrapDir, unwrapWait, *unwrapDry, unwrapDst, unwrapMaxTime, unwrapSrc, logger))
 	}
 }
 

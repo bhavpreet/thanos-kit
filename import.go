@@ -1,4 +1,4 @@
-package main
+package thanoskit
 
 import (
 	"context"
@@ -25,7 +25,7 @@ import (
 	"time"
 )
 
-func importMetrics(bkt objstore.Bucket, file *string, importBlockSize *time.Duration, dir *string, importLabels *[]string, upload bool, logger log.Logger) error {
+func ImportMetrics(bkt objstore.Bucket, file *string, importBlockSize *time.Duration, dir *string, importLabels *[]string, upload bool, logger log.Logger) error {
 	inputFile, err := fileutil.OpenMmapFile(*file)
 	if err != nil {
 		return err

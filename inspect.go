@@ -1,4 +1,4 @@
-package main
+package thanoskit
 
 import (
 	"context"
@@ -37,7 +37,7 @@ type Meta struct {
 	Prefix string
 }
 
-func inspect(bkt objstore.Bucket, recursive *bool, selector *[]string, sortBy *[]string, maxTime *mtd.TimeOrDurationValue, logger log.Logger) error {
+func Inspect(bkt objstore.Bucket, recursive *bool, selector *[]string, sortBy *[]string, maxTime *mtd.TimeOrDurationValue, logger log.Logger) error {
 	selectorLabels, err := parseFlagLabels(*selector)
 	if err != nil {
 		return errors.Wrap(err, "error parsing selector flag")

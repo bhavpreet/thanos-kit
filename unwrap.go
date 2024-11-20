@@ -1,4 +1,4 @@
-package main
+package thanoskit
 
 import (
 	"context"
@@ -32,7 +32,7 @@ import (
 
 const metaExtLabels = "__meta_ext_labels"
 
-func unwrap(bkt objstore.Bucket, unwrapRelabel extkingpin.PathOrContent, unwrapMetaRelabel extkingpin.PathOrContent, recursive bool, dir *string, wait *time.Duration, unwrapDry bool, outConfig *extkingpin.PathOrContent, maxTime *model.TimeOrDurationValue, unwrapSrc *string, logger log.Logger) (err error) {
+func Unwrap(bkt objstore.Bucket, unwrapRelabel extkingpin.PathOrContent, unwrapMetaRelabel extkingpin.PathOrContent, recursive bool, dir *string, wait *time.Duration, unwrapDry bool, outConfig *extkingpin.PathOrContent, maxTime *model.TimeOrDurationValue, unwrapSrc *string, logger log.Logger) (err error) {
 	relabelContentYaml, err := unwrapRelabel.Content()
 	if err != nil {
 		return fmt.Errorf("get content of relabel configuration: %w", err)
